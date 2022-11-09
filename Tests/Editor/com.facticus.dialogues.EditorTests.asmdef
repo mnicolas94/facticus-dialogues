@@ -1,7 +1,7 @@
 {
-  "name": "com.{{COMPANY}}.{{REPOSITORY_NAME}}.Editor.Tests",
+  "name": "com.facticus.dialogues.Editor.Tests",
   "references": [
-    "com.{{COMPANY}}.{{REPOSITORY_NAME}}"
+    "com.facticus.dialogues"
   ],
   "optionalUnityReferences": [
     "TestAssemblies"

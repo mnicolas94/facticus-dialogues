@@ -1,6 +1,9 @@
 {
-    "name": "com.{{COMPANY}}.{{REPOSITORY_NAME}}",
-    "references": [],
+    "name": "com.facticus.dialogues",
+    "rootNamespace": "",
+    "references": [
+        "GUID:23eed6c2401dca1419d1ebd180e58c5a"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

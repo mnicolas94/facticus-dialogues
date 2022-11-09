@@ -1,0 +1,8 @@
+MiniMap.anchored {
+    left: auto;
+    bottom: auto;
+    right: 8px;
+    top: 24px;
+    width: 200px;
+    height: 150px;
+}

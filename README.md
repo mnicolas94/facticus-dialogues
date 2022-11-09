@@ -1,6 +1,6 @@
-# {{FRIENDLY_NAME}}
+# Dialogues
 
-{{DESCRIPTION}}
+Dialogue system for Unity
 
 ## License
 

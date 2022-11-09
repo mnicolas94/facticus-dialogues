@@ -1,6 +1,10 @@
 {
-    "name": "com.{{COMPANY}}.{{REPOSITORY_NAME}}.Editor",
-    "references": [],
+    "name": "com.facticus.dialogues.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cc000f534193819459fccdfdfd4c8298",
+        "GUID:87f0d0b9a8d159a4c94e89b339e4604a"
+    ],
     "includePlatforms": [
         "Editor"
     ],
