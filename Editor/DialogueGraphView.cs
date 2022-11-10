@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Dialogues.Checks;
+using Dialogues.Editor.Nodes;
 using Dialogues.Editor.SearchWindow;
+using Dialogues.Triggers;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -10,11 +13,24 @@ namespace Dialogues.Editor
 {
     public class DialogueGraphView : GraphView
     {
+        private DialoguesDatabase _database;
+        
         private readonly Vector2 _defaultNodeSize = new Vector2(700, 300);
         private CreateNodeSearchWindowProvider _searchProvider;
 
-        public DialogueGraphView(EditorWindow editorWindow)
+        public DialoguesDatabase Database
         {
+            get => _database;
+            set
+            {
+                _database = value;
+                _searchProvider.Database = value;
+            }
+        }
+
+        public DialogueGraphView(EditorWindow editorWindow, DialoguesDatabase database)
+        {
+            _database = database;
             SetupUi();
             AddNodeSearchWindow(editorWindow);
             CreateEntryNode();
@@ -23,7 +39,7 @@ namespace Dialogues.Editor
         private void AddNodeSearchWindow(EditorWindow editorWindow)
         {
             _searchProvider = ScriptableObject.CreateInstance<CreateNodeSearchWindowProvider>();
-            _searchProvider.Initialize(editorWindow, this);
+            _searchProvider.Initialize(editorWindow, this, _database);
             nodeCreationRequest += context =>
             {
                 var searchWindowContext = new SearchWindowContext(context.screenMousePosition);
@@ -33,7 +49,7 @@ namespace Dialogues.Editor
 
         private void SetupUi()
         {
-            styleSheets.Add(Resources.Load<StyleSheet>("DialogueGraphView"));
+            styleSheets.Add(Resources.Load<StyleSheet>("Styles/DialogueGraphView"));
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
@@ -46,7 +62,13 @@ namespace Dialogues.Editor
 
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
         {
-            var compatiblePorts = ports.Where(port => port.node != startPort.node);
+            var compatiblePorts = ports.Where(port =>
+            {
+                var isSameNode = port.node == startPort.node;
+                var isSameDirection = port.direction == startPort.direction;
+                var areCompatible = PortsUtils.AreCompatible(startPort, port);
+                return !isSameNode && !isSameDirection && areCompatible;
+            });
             return compatiblePorts.ToList();
         }
 
@@ -54,10 +76,10 @@ namespace Dialogues.Editor
         {
             var node = new Node()
             {
-                title = "Entry"
+                title = "Start"
             };
 
-            node.CreatePort("Next", Direction.Output);
+            node.AddPort(PortsUtils.CreateEntryPort("Next"), true);
 
             node.capabilities &= ~Capabilities.Deletable;
             node.capabilities &= ~Capabilities.Movable;
@@ -73,22 +95,48 @@ namespace Dialogues.Editor
             AddElement(node);
         }
         
-        public void AddEmptyNode(string title, Vector2 position)
-        {
-            var node = CreateEmptyDialogueNode(title);
-            AddNode(node, position);
-        }
-        
-        private Node CreateEmptyDialogueNode(string title)
+        public void AddDefaultDialogueNode(string title, Vector2 position)
         {
             var node = new DialogueNode()
             {
                 title = title
             };
-
-            node.CreatePort("In", Direction.Input, Port.Capacity.Multi);
-            node.CreatePort("Out", Direction.Output, Port.Capacity.Multi);
-            return node;
+            AddNode(node, position);
+        }
+        
+        public void AddNewCheckNode(string checkName, Vector2 position)
+        {
+            var check = _database.CreateNewCheck(checkName);
+            var node = new CheckNode(check);
+            AddNode(node, position);
+        }
+        
+        public void AddCheckNode(Check check, Vector2 position)
+        {
+            var node = new CheckNode(check);
+            AddNode(node, position);
+        }
+        
+        public void AddNewTriggerNode(string triggerName, Vector2 position)
+        {
+            var trigger = _database.CreateNewTrigger(triggerName);
+            var node = new TriggerNode(trigger);
+            AddNode(node, position);
+        }
+        
+        public void AddTriggerNode(Trigger trigger, Vector2 position)
+        {
+            var node = new TriggerNode(trigger);
+            AddNode(node, position);
+        }
+        
+        public void AddBinaryNode(string title, Vector2 position, BinaryOperation operation)
+        {
+            var node = new BooleanNode(operation)
+            {
+                title = title
+            };
+            AddNode(node, position);
         }
     }
 }

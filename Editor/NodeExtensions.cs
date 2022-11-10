@@ -4,15 +4,15 @@ namespace Dialogues.Editor
 {
     public static class NodeExtensions
     {
-        public static void CreatePort(this Node node, string portName, Direction direction, Port.Capacity capacity = Port.Capacity.Single)
+        public static void AddPort(this Node node, Port port, bool refresh = false)
         {
-            var port = node.InstantiatePort(Orientation.Horizontal, direction, capacity, typeof(float));
-            port.portName = portName;
-            var container = direction == Direction.Input ? node.inputContainer : node.outputContainer;
+            var container = port.direction == Direction.Input ? node.inputContainer : node.outputContainer;
             container.Add(port);
-            
-            node.RefreshExpandedState();
-            node.RefreshPorts();
+            if (refresh)
+            {
+                node.RefreshExpandedState();
+                node.RefreshPorts();
+            }
         }
     }
 }

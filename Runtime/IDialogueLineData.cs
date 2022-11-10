@@ -1,15 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Dialogues.Runtime
+namespace Dialogues
 {
     public interface IDialogueLineData
     {
-    }
-
-    [Serializable]
-    public class TextLine : IDialogueLineData
-    {
-        [SerializeField] private string _line;
     }
 }

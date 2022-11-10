@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,6 +14,7 @@ namespace Dialogues.Editor
         private Toolbar _toolBar;
         private VisualElement _toolBarLeftLayout;
         private VisualElement _toolBarRightLayout;
+        private DialoguesDatabase _database;
 
         private bool ShowMiniMap
         {
@@ -29,19 +31,20 @@ namespace Dialogues.Editor
 
         private void OnEnable()
         {
-            CreateGraph();
+            _database = GetDefaultOrCreateDatabase();
             CreateToolbar();
+            CreateGraph();
             CreateMiniMap();
         }
 
         private void CreateGraph()
         {
-            _graphView = new DialogueGraphView(this)
+            _graphView = new DialogueGraphView(this, _database)
             {
                 name = "Dialogue graph view"
             };
 
-            _graphView.StretchToParentSize();
+            _graphView.style.flexGrow = 1;
             rootVisualElement.Add(_graphView);
         }
 
@@ -71,7 +74,7 @@ namespace Dialogues.Editor
             _miniMap = new MiniMap();
             _miniMap.anchored = true;
             _miniMap.style.display = DisplayStyle.None;  // start hidden
-            _miniMap.styleSheets.Add(Resources.Load<StyleSheet>("MiniMap"));
+            _miniMap.styleSheets.Add(Resources.Load<StyleSheet>("Styles/MiniMap"));
             _graphView.Add(_miniMap);
             
             var miniMapButton = new ToolbarToggle();
@@ -83,6 +86,29 @@ namespace Dialogues.Editor
         private void OnDisable()
         {
             rootVisualElement.Remove(_graphView);
+        }
+
+        private DialoguesDatabase GetDefaultOrCreateDatabase()
+        {
+            DialoguesDatabase database;
+            
+            var databasesGuids = AssetDatabase.FindAssets($"t:{typeof(DialoguesDatabase).Name}");
+            if (databasesGuids.Length > 0)
+            {
+                var guid = databasesGuids[0];  // get the first one
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                database = AssetDatabase.LoadAssetAtPath<DialoguesDatabase>(path);
+            }
+            else
+            {
+                // Create a database
+                database = CreateInstance<DialoguesDatabase>();
+                var path = "Assets/DialoguesDatabase.asset";
+                AssetDatabase.CreateAsset(database, path);
+                AssetDatabase.SaveAssets();
+            }
+            
+            return database;
         }
     }
 }
