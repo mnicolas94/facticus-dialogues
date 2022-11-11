@@ -70,7 +70,7 @@ namespace Dialogues.Editor.SearchWindow
             createCheckEntry.level = 2;
             createCheckEntry.userData = new EntrySelectedAction((graph, position) =>
             {
-                graph.AddNewCheckNode("new check", position);
+                graph.AddNewCheckNode("Check", position);
             });
             tree.Add(createCheckEntry);
             
@@ -100,7 +100,7 @@ namespace Dialogues.Editor.SearchWindow
             createTriggerEntry.level = 2;
             createTriggerEntry.userData = new EntrySelectedAction((graph, position) =>
             {
-                graph.AddNewTriggerNode("new trigger", position);
+                graph.AddNewTriggerNode("Trigger", position);
             });
             tree.Add(createTriggerEntry);
 

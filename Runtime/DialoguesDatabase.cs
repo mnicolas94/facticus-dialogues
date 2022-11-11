@@ -14,11 +14,35 @@ namespace Dialogues
         [SerializeField] private List<Check> _checks = new List<Check>();
         [SerializeField] private List<Trigger> _triggers = new List<Trigger>();
 
-        public PropertyDatabaseHandler<Check> ChecksDatabase =>
-            new PropertyDatabaseHandler<Check>(this, _checks, CheckAssetPrefix);
+        private PropertyDatabaseHandler<Check> _checksDatabase;
+        private PropertyDatabaseHandler<Trigger> _triggersDatabase;
+
+        public PropertyDatabaseHandler<Check> ChecksDatabase
+        {
+            get
+            {
+                if (_checksDatabase == null)
+                {
+                    _checksDatabase = new PropertyDatabaseHandler<Check>(this, _checks, CheckAssetPrefix);
+                }
+
+                return _checksDatabase;
+            }
+        }
+            
         
-        public PropertyDatabaseHandler<Trigger> TriggersDatabase =>
-            new PropertyDatabaseHandler<Trigger>(this, _triggers, TriggerAssetPrefix);
+        public PropertyDatabaseHandler<Trigger> TriggersDatabase
+        {
+            get
+            {
+                if (_triggersDatabase == null)
+                {
+                    _triggersDatabase = new PropertyDatabaseHandler<Trigger>(this, _triggers, TriggerAssetPrefix);
+                }
+
+                return _triggersDatabase;
+            }
+        }
 
         [ContextMenu("Clear")]
         private void Clear()

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Dialogues.Checks;
 using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 namespace Dialogues
@@ -60,6 +62,16 @@ namespace Dialogues
                 Remove(asset);
             }
             
+            EditorUtility.SetDirty(_assetOwner);
+            AssetDatabase.SaveAssets();
+        }
+
+        public void Rename(T asset, string newName)
+        {
+            newName = $"{_assetPrefix}{newName}";
+            asset.name = newName;
+            
+            EditorUtility.SetDirty(asset);
             EditorUtility.SetDirty(_assetOwner);
             AssetDatabase.SaveAssets();
         }

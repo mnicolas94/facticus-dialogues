@@ -109,16 +109,22 @@ namespace Dialogues.Editor
             var checksDatabase = _database.ChecksDatabase;
             var check = checksDatabase.CreateNew(checkName);
             var displayName = checksDatabase.GetDisplayName(check);
-            var node = new CheckNode(check)
+            var node = new CheckNode(check, checksDatabase)
             {
                 title = displayName
             };
             AddNode(node, position);
+            node.StartRename();
         }
         
         public void AddCheckNode(Check check, Vector2 position)
         {
-            var node = new CheckNode(check);
+            var checksDatabase = _database.ChecksDatabase;
+            var displayName = checksDatabase.GetDisplayName(check);
+            var node = new CheckNode(check, checksDatabase)
+            {
+                title = displayName
+            };
             AddNode(node, position);
         }
         
@@ -127,16 +133,22 @@ namespace Dialogues.Editor
             var triggersDatabase = _database.TriggersDatabase;
             var trigger = triggersDatabase.CreateNew(triggerName);
             var displayName = triggersDatabase.GetDisplayName(trigger);
-            var node = new TriggerNode(trigger)
+            var node = new TriggerNode(trigger, triggersDatabase)
             {
                 title = displayName
             };
             AddNode(node, position);
+            node.StartRename();
         }
         
         public void AddTriggerNode(Trigger trigger, Vector2 position)
         {
-            var node = new TriggerNode(trigger);
+            var triggersDatabase = _database.TriggersDatabase;
+            var displayName = triggersDatabase.GetDisplayName(trigger);
+            var node = new TriggerNode(trigger, triggersDatabase)
+            {
+                title = displayName
+            };
             AddNode(node, position);
         }
         
