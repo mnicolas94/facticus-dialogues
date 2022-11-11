@@ -10,7 +10,6 @@ namespace Dialogues.Editor.Nodes
         public TriggerNode(Trigger trigger)
         {
             _trigger = trigger;
-            title = DialoguesDatabase.GetTriggerDisplayName(trigger);
         }
     }
 }

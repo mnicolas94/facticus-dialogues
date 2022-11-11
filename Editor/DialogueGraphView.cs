@@ -106,8 +106,13 @@ namespace Dialogues.Editor
         
         public void AddNewCheckNode(string checkName, Vector2 position)
         {
-            var check = _database.CreateNewCheck(checkName);
-            var node = new CheckNode(check);
+            var checksDatabase = _database.ChecksDatabase;
+            var check = checksDatabase.CreateNew(checkName);
+            var displayName = checksDatabase.GetDisplayName(check);
+            var node = new CheckNode(check)
+            {
+                title = displayName
+            };
             AddNode(node, position);
         }
         
@@ -119,8 +124,13 @@ namespace Dialogues.Editor
         
         public void AddNewTriggerNode(string triggerName, Vector2 position)
         {
-            var trigger = _database.CreateNewTrigger(triggerName);
-            var node = new TriggerNode(trigger);
+            var triggersDatabase = _database.TriggersDatabase;
+            var trigger = triggersDatabase.CreateNew(triggerName);
+            var displayName = triggersDatabase.GetDisplayName(trigger);
+            var node = new TriggerNode(trigger)
+            {
+                title = displayName
+            };
             AddNode(node, position);
         }
         

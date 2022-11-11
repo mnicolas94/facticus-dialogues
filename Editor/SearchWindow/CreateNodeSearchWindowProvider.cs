@@ -75,9 +75,11 @@ namespace Dialogues.Editor.SearchWindow
             tree.Add(createCheckEntry);
             
             // checks-in-database entries
-            foreach (var check in _database.Checks)
+            
+            var checksDatabase = _database.ChecksDatabase;
+            foreach (var check in checksDatabase.List)
             {
-                var checkName = DialoguesDatabase.GetCheckDisplayName(check);
+                var checkName = checksDatabase.GetDisplayName(check);
                 var entry = GetIndentedEntry(checkName);
                 entry.level = 2;
                 entry.userData = new EntrySelectedAction((graph, position) =>
@@ -103,9 +105,10 @@ namespace Dialogues.Editor.SearchWindow
             tree.Add(createTriggerEntry);
 
             // triggers-in-database entries
-            foreach (var trigger in _database.Triggers)
+            var triggersDatabase = _database.TriggersDatabase;
+            foreach (var trigger in triggersDatabase.List)
             {
-                var triggerName = DialoguesDatabase.GetTriggerDisplayName(trigger);
+                var triggerName = triggersDatabase.GetDisplayName(trigger);
                 var entry = GetIndentedEntry(triggerName);
                 entry.level = 2;
                 entry.userData = new EntrySelectedAction((graph, position) =>

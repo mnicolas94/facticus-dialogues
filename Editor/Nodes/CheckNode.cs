@@ -10,7 +10,6 @@ namespace Dialogues.Editor.Nodes
         public CheckNode(Check check)
         {
             _check = check;
-            title = DialoguesDatabase.GetCheckDisplayName(check);
         }
     }
 }
