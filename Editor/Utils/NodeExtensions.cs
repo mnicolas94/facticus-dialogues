@@ -1,4 +1,5 @@
 ﻿using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 namespace Dialogues.Editor
 {
@@ -13,6 +14,14 @@ namespace Dialogues.Editor
                 node.RefreshExpandedState();
                 node.RefreshPorts();
             }
+        }
+
+        public static void RemoveCollapsibleButton(this Node node)
+        {
+            // remove collapsible button
+            var button = node.Q("collapse-button");
+            button.RemoveFromHierarchy();
+            node.capabilities &= ~Capabilities.Collapsible;
         }
     }
 }

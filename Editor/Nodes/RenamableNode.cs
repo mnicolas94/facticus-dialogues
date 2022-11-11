@@ -12,8 +12,8 @@ namespace Dialogues.Editor.Nodes
     {
         public Action<string> OnRename;
         
-        private Label _titleLabel;
-        private TextField _renameField;
+        protected Label _titleLabel;
+        protected TextField _renameField;
  
         public string ID {
             get => title;

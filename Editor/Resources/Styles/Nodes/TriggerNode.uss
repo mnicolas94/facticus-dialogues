@@ -1,0 +1,17 @@
+#title: {
+    flex-direction: row-reverse;
+}
+
+#title-label {
+    margin-left: 0;
+    margin-right: 6px;
+}
+
+#textField {
+    margin-left: 0;
+    margin-right: 6px;
+}
+
+#title-button-container {
+    align-items: center;
+}

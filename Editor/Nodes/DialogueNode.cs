@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿using Dialogues.Editor.Ports;
+using Dialogues.Editor.Utils;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,6 +19,7 @@ namespace Dialogues.Editor.Nodes
 
         public DialogueNode(DialogueLine dialogueLine)
         {
+            this.AddStyleSheet("Styles/Nodes/DialogueNode");
             _dialogueLine = dialogueLine;
             _serializedDialogueLine = new SerializedObject(dialogueLine);
             _lineDataProperty = _serializedDialogueLine.FindProperty(DialogueLine.LineDataFieldName);
@@ -37,11 +40,10 @@ namespace Dialogues.Editor.Nodes
             });
             Add(imguiContainer);
             
-            
-            this.AddPort(PortsUtils.CreateInputPort("In"));
-            this.AddPort(PortsUtils.CreateOutputPort("Out"));
-            this.AddPort(PortsUtils.CreateCheckPort("Check"));
-            this.AddPort(PortsUtils.CreateTriggerPort("Trigger"));
+            this.AddPort(PortsUtils.CreateDialoguePort("In", Direction.Input, Port.Capacity.Multi));
+            this.AddPort(PortsUtils.CreateDialoguePort("Out", Direction.Output, Port.Capacity.Multi));
+            this.AddPort(PortsUtils.CreateCheckPort("Check", Direction.Input, Port.Capacity.Single));
+            this.AddPort(PortsUtils.CreateTriggerPort("Trigger", Direction.Output, Port.Capacity.Multi));
             
             RefreshExpandedState();
             RefreshPorts();

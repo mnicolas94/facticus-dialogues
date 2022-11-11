@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Dialogues.Editor.Utils;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEditor.VersionControl;
@@ -74,7 +75,7 @@ namespace Dialogues.Editor
             _miniMap = new MiniMap();
             _miniMap.anchored = true;
             _miniMap.style.display = DisplayStyle.None;  // start hidden
-            _miniMap.styleSheets.Add(Resources.Load<StyleSheet>("Styles/MiniMap"));
+            _miniMap.AddStyleSheet("Styles/MiniMap");
             _graphView.Add(_miniMap);
             
             var miniMapButton = new ToolbarToggle();

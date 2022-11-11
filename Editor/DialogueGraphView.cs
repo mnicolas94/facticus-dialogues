@@ -2,7 +2,9 @@
 using System.Linq;
 using Dialogues.Checks;
 using Dialogues.Editor.Nodes;
+using Dialogues.Editor.Ports;
 using Dialogues.Editor.SearchWindow;
+using Dialogues.Editor.Utils;
 using Dialogues.Triggers;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -49,7 +51,7 @@ namespace Dialogues.Editor
 
         private void SetupUi()
         {
-            styleSheets.Add(Resources.Load<StyleSheet>("Styles/DialogueGraphView"));
+            this.AddStyleSheet("Styles/DialogueGraphView");
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
@@ -74,18 +76,11 @@ namespace Dialogues.Editor
 
         private void CreateEntryNode()
         {
-            var node = new Node()
+            var node = new EntryNode()
             {
                 title = "Start"
             };
 
-            node.AddPort(PortsUtils.CreateEntryPort("Next"), true);
-
-            node.capabilities &= ~Capabilities.Deletable;
-            node.capabilities &= ~Capabilities.Movable;
-            node.capabilities &= ~Capabilities.Collapsible;
-            node.capabilities &= ~Capabilities.Copiable;
-            
             AddNode(node, Vector2.zero);
         }
 

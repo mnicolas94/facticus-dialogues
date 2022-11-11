@@ -1,5 +1,7 @@
 ﻿using System;
+using Dialogues.Editor.Utils;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 namespace Dialogues.Editor.Ports
 {
@@ -16,34 +18,24 @@ namespace Dialogues.Editor.Ports
             Type type)
             : base(portOrientation, portDirection, portCapacity, type)
         {
+            
         }
         
-//        public static DialoguePort Create(
-//            string name,
-//            Orientation portOrientation,
-//            Direction portDirection,
-//            Capacity portCapacity,
-//            PortType type,
-//            EdgeConnectorListener edgeConnectorListener)
-//        {
-//            var port = new DialoguePort(portOrientation, portDirection, portCapacity, typeof(object));
-//            if (edgeConnectorListener != null) {
-//                port.m_EdgeConnector = new EdgeConnector<Edge>(edgeConnectorListener);
-//                port.AddManipulator(port.m_EdgeConnector);
-//            }
-//            
-//            port.AddStyleSheet("Styles/Node/Port");
-//            if (!required) {
-//                port.AddToClassList("optional");
-//            }
-//            
-//            port._portType = type;
-//            port.portColor = PortHelper.PortColor(port);
-//            port.viewDataKey = Guid.NewGuid().ToString();
-//            port.portName = name;
-//            
-//            
-//            return port;
-//        }
+        public static DialoguePort Create(
+            Orientation portOrientation,
+            Direction portDirection,
+            Capacity portCapacity,
+            PortType type,
+            EdgeConnectorListener edgeConnectorListener)
+        {
+            var port = new DialoguePort(portOrientation, portDirection, portCapacity, typeof(object));
+            if (edgeConnectorListener != null) {
+                port.m_EdgeConnector = new EdgeConnector<Edge>(edgeConnectorListener);
+            }
+            port.AddManipulator(port.m_EdgeConnector);
+            port._portType = type;
+            
+            return port;
+        }
     }
 }
