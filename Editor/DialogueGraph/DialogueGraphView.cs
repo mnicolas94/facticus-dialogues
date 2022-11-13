@@ -42,9 +42,14 @@ namespace Dialogues.Editor.DialogueGraph
         
         public void SaveGraph(Dialogue dialogue)
         {
-            // clear dialogue lines
-            // clear dialogue connections
-            
+            // clear dialogue data
+            dialogue.EditorClearLines();
+            dialogue.EditorClearConnections();
+
+            var dialogueNodes = nodes.Where(node => node is DialogueNode).Cast<DialogueNode>();
+            foreach (var dialogueNode in dialogueNodes)
+            {
+            }
             // foreach dialogue node
             //     add line to dialogue
             //     connect check to line

@@ -46,6 +46,8 @@ namespace Dialogues
         public void EditorAddLine(DialogueLine line)
         {
             _lines.Add(line);
+            var index = _lines.Count;
+            line.name = $"{name}_line-{index}";
             AssetDatabase.AddObjectToAsset(line, this);
             EditorUtility.SetDirty(this);
         }
@@ -56,6 +58,15 @@ namespace Dialogues
             _linesConnections.Remove(line);
             AssetDatabase.RemoveObjectFromAsset(line);
             EditorUtility.SetDirty(this);
+        }
+
+        public void EditorClearLines()
+        {
+            var lines = new List<DialogueLine>(_lines);
+            foreach (var line in lines)
+            {
+                EditorRemoveLine(line);
+            }
         }
         
         public void EditorAddLineConnections(DialogueLine line, List<DialogueLine> connections)
@@ -77,6 +88,11 @@ namespace Dialogues
             {
                 // TODO
             }
+        }
+
+        public void EditorClearConnections()
+        {
+            _linesConnections.Clear();
         }
 #endif
     }

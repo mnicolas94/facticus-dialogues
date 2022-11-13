@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Dialogues.Checks;
 using Dialogues.Editor.DialogueGraph.Ports;
 using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor;
@@ -20,6 +21,10 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
         private Port _checkPort;
         private Port _triggerPort;
 
+        public DialogueLine DialogueLine => _dialogueLine;
+
+        public ICheck Check => null;
+        
         public DialogueNode(DialogueLine dialogueLine)
         {
             _dialogueLine = dialogueLine;
