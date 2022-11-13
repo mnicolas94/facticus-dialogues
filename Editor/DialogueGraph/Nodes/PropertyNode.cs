@@ -1,4 +1,5 @@
-﻿using Dialogues.Editor.DialogueGraph.Utils;
+﻿using System.Collections.Generic;
+using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
     {
         [SerializeField] protected T _property;
         [SerializeField] protected DialoguesDatabase _database;
+        private Port _port;
 
         public PropertyNode(T property, DialoguesDatabase database)
         {
@@ -25,8 +27,8 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
             this.RemoveCollapsibleButton();
             
             // add port
-            var port = GetPort();
-            titleButtonContainer.Add(port);
+            _port = GetPort();
+            titleButtonContainer.Add(_port);
         }
 
         protected abstract Port GetPort();
@@ -34,5 +36,9 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
         protected abstract PropertyDatabaseHandler<T> GetDatabaseHandler(DialoguesDatabase database);
 
         public abstract Node Deserialize();
+        public List<Port> GetPorts()
+        {
+            return new List<Port>{ _port };
+        }
     }
 }

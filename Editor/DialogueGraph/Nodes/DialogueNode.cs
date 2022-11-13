@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Dialogues.Editor.DialogueGraph.Ports;
 using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor;
@@ -14,6 +15,10 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
         [SerializeField] private DialogueLine _dialogueLine;
         private SerializedObject _serializedDialogueLine;
         private SerializedProperty _lineDataProperty;
+        private Port _inPort;
+        private Port _outPort;
+        private Port _checkPort;
+        private Port _triggerPort;
 
         public DialogueNode(DialogueLine dialogueLine)
         {
@@ -39,10 +44,14 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
             });
             Add(imguiContainer);
             
-            this.AddPort(PortsUtils.CreateDialoguePort("In", Direction.Input, Port.Capacity.Multi));
-            this.AddPort(PortsUtils.CreateDialoguePort("Out", Direction.Output, Port.Capacity.Multi));
-            this.AddPort(PortsUtils.CreateCheckPort("Check", Direction.Input, Port.Capacity.Single));
-            this.AddPort(PortsUtils.CreateTriggerPort("Trigger", Direction.Output, Port.Capacity.Multi));
+            _inPort = PortsUtils.CreateDialoguePort("In", Direction.Input, Port.Capacity.Multi);
+            _outPort = PortsUtils.CreateDialoguePort("Out", Direction.Output, Port.Capacity.Multi);
+            _checkPort = PortsUtils.CreateCheckPort("Check", Direction.Input, Port.Capacity.Single);
+            _triggerPort = PortsUtils.CreateTriggerPort("Trigger", Direction.Output, Port.Capacity.Multi);
+            this.AddPort(_inPort);
+            this.AddPort(_outPort);
+            this.AddPort(_checkPort);
+            this.AddPort(_triggerPort);
             
             RefreshExpandedState();
             RefreshPorts();
@@ -51,6 +60,11 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
         public Node Deserialize()
         {
             return new DialogueNode(_dialogueLine);
+        }
+
+        public List<Port> GetPorts()
+        {
+            return new List<Port>{ _inPort, _outPort, _checkPort, _triggerPort};
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Dialogues.Checks;
 using Dialogues.Editor.DialogueGraph.Ports;
 using Dialogues.Editor.DialogueGraph.Utils;
@@ -42,6 +43,11 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
         public Node Deserialize()
         {
             return new BooleanNode(_booleanOperation);
+        }
+
+        public List<Port> GetPorts()
+        {
+            return new List<Port>{ _inA, _inB, _out};
         }
     }
 }

@@ -15,36 +15,42 @@ namespace Dialogues
     public class DialogueEditorData
     {
         [SerializeField] private List<SerializedNodePosition> _nodes;
+        [SerializeField] private List<SerializableEdge> _edges;
 
         public List<SerializedNodePosition> Nodes => _nodes;
 
-        public DialogueEditorData() : this(new List<Node>())
+        public List<SerializableEdge> Edges => _edges;
+
+        public DialogueEditorData() : this(new List<SerializedNodePosition>(), new List<SerializableEdge>())
         {
         }
         
-        public DialogueEditorData(List<Node> nodes)
+        public DialogueEditorData(List<SerializedNodePosition> nodes, List<SerializableEdge> serializableEdges)
         {
-            _nodes = nodes
-                .Where(node => node is ISerializableNode)
-                .Select(node => ((ISerializableNode) node, node.GetPosition().position))
-                .Select(tuple =>
-                {
-                    var (node, position) = tuple;
-                    var serializableInterface = new SerializableInterface<ISerializableNode> {Value = node};
-                    var serializedNodePosition = new SerializedNodePosition
-                    {
-                        node = serializableInterface,
-                        position = position
-                    };
-                    return serializedNodePosition;
-                })
-                .ToList();
+            _nodes = nodes;
+            _edges = serializableEdges;
         }
     }
 
     public interface ISerializableNode
     {
         Node Deserialize();
+        
+        /// <summary>
+        /// Get the nodes ports. This list should be created deterministically in order to serialize edges based
+        /// on indices.
+        /// </summary>
+        /// <returns></returns>
+        List<Port> GetPorts();
+    }
+
+    [Serializable]
+    public class SerializableEdge
+    {
+        public int inputNodeIndex;
+        public int inputPortIndex;
+        public int outputNodeIndex;
+        public int outputPortIndex;
     }
 
     [Serializable]

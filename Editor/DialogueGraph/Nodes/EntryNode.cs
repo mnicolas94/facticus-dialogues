@@ -6,6 +6,10 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
 {
     public class EntryNode : Node
     {
+        private Port _port;
+
+        public Port Port => _port;
+
         public EntryNode()
         {
             this.AddStyleSheet("Styles/Nodes/EntryNode");
@@ -16,8 +20,8 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
             capabilities &= ~Capabilities.Copiable;
             
             this.RemoveCollapsibleButton();
-            var port = PortsUtils.CreateEntryPort("");
-            titleButtonContainer.Add(port);
+            _port = PortsUtils.CreateEntryPort("");
+            titleButtonContainer.Add(_port);
             RefreshExpandedState();
         }
     }
