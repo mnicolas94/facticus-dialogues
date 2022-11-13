@@ -17,7 +17,7 @@ namespace Dialogues.Editor.DialogueGraph
     {
         private DialoguesDatabase _database;
         
-        public static CreateNodeSearchWindowProvider _searchProvider;
+        private static CreateNodeSearchWindowProvider _searchProvider;
         private EntryNode _entryNode;
 
         public DialoguesDatabase Database
@@ -61,6 +61,8 @@ namespace Dialogues.Editor.DialogueGraph
 
         public void LoadGraph(Dialogue dialogue)
         {
+            ClearGraph();
+            
             if (dialogue == null)
             {
                 return;
@@ -72,8 +74,25 @@ namespace Dialogues.Editor.DialogueGraph
                 var node = serializedNode.Value.Deserialize();
                 AddNode(node, position);
             }
+            
+            // deserialize edges
         }
 
+        private void ClearGraph()
+        {
+            IEnumerable<GraphElement> elements = nodes.Cast<GraphElement>().Concat(edges);
+            
+            foreach (var element in elements)
+            {
+                if (element != _entryNode)
+                {
+                    RemoveElement(element);
+                }
+            }
+
+            _entryNode.RefreshPorts();
+        }
+        
         private void AddNodeSearchWindow(EditorWindow editorWindow)
         {
             _searchProvider = ScriptableObject.CreateInstance<CreateNodeSearchWindowProvider>();
