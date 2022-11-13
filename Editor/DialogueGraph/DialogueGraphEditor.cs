@@ -1,12 +1,11 @@
-﻿using Dialogues.Editor.Utils;
+﻿using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Dialogues.Editor
+namespace Dialogues.Editor.DialogueGraph
 {
     public class DialogueGraphEditor : EditorWindow
     {
@@ -15,6 +14,8 @@ namespace Dialogues.Editor
         private Toolbar _toolBar;
         private VisualElement _toolBarLeftLayout;
         private VisualElement _toolBarRightLayout;
+
+        private Dialogue _currentDialogue;
         private DialoguesDatabase _database;
 
         private bool ShowMiniMap
@@ -26,8 +27,15 @@ namespace Dialogues.Editor
         [MenuItem("Graph/Open")]
         public static void OpenWindow()
         {
+            EditDialogue(null);
+        }
+
+        public static void EditDialogue(Dialogue dialogue)
+        {
             var window = GetWindow<DialogueGraphEditor>();
             window.titleContent = new GUIContent("Dialogue editor");
+            window._currentDialogue = dialogue;
+            window._graphView.LoadGraph(dialogue);
         }
 
         private void OnEnable()
@@ -35,6 +43,7 @@ namespace Dialogues.Editor
             _database = GetDefaultOrCreateDatabase();
             CreateToolbar();
             CreateGraph();
+            CreateSaveButton();
             CreateMiniMap();
         }
 
@@ -47,6 +56,7 @@ namespace Dialogues.Editor
 
             _graphView.style.flexGrow = 1;
             rootVisualElement.Add(_graphView);
+            _graphView.LoadGraph(_currentDialogue);
         }
 
         private void CreateToolbar()
@@ -68,6 +78,13 @@ namespace Dialogues.Editor
             _toolBar.Add(_toolBarRightLayout);
             
             rootVisualElement.Add(_toolBar);
+        }
+        
+        private void CreateSaveButton()
+        {
+            var saveButton = new Button(() => _graphView.SaveGraph(_currentDialogue));
+            saveButton.text = "Save";
+            _toolBarLeftLayout.Add(saveButton);
         }
 
         private void CreateMiniMap()

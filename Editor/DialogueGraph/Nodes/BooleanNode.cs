@@ -1,14 +1,17 @@
-﻿using Dialogues.Checks;
-using Dialogues.Editor.Ports;
-using Dialogues.Editor.Utils;
+﻿using System;
+using Dialogues.Checks;
+using Dialogues.Editor.DialogueGraph.Ports;
+using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Dialogues.Editor.Nodes
+namespace Dialogues.Editor.DialogueGraph.Nodes
 {
-    public class BooleanNode : Node
+    [Serializable]
+    public sealed class BooleanNode : Node, ISerializableNode
     {
-        private BinaryOperation _booleanOperation;
+        [SerializeField] private BinaryOperation _booleanOperation;
         private Port _inA;
         private Port _inB;
         private Port _out;
@@ -17,7 +20,8 @@ namespace Dialogues.Editor.Nodes
         public BooleanNode(BinaryOperation booleanOperation)
         {
             _booleanOperation = booleanOperation;
-            
+
+            title = booleanOperation.ToString();
             this.AddStyleSheet("Styles/Nodes/BooleanNode");
             this.RemoveCollapsibleButton();
             
@@ -33,6 +37,11 @@ namespace Dialogues.Editor.Nodes
 
             RefreshExpandedState();
             RefreshPorts();
+        }
+
+        public Node Deserialize()
+        {
+            return new BooleanNode(_booleanOperation);
         }
     }
 }

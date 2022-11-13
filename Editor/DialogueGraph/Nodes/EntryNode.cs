@@ -1,9 +1,8 @@
-﻿using Dialogues.Editor.Ports;
-using Dialogues.Editor.Utils;
+﻿using Dialogues.Editor.DialogueGraph.Ports;
+using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine.UIElements;
 
-namespace Dialogues.Editor.Nodes
+namespace Dialogues.Editor.DialogueGraph.Nodes
 {
     public class EntryNode : Node
     {

@@ -1,4 +1,4 @@
-﻿namespace Dialogues.Editor.Ports
+﻿namespace Dialogues.Editor.DialogueGraph.Ports
 {
     public enum PortType
     {

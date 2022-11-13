@@ -1,7 +1,7 @@
-﻿using Dialogues.Editor.Utils;
+﻿using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor.Experimental.GraphView;
 
-namespace Dialogues.Editor.Ports
+namespace Dialogues.Editor.DialogueGraph.Ports
 {
     public static class PortsUtils
     {

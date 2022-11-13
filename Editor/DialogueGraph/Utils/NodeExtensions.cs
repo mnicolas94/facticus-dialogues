@@ -1,7 +1,7 @@
 ﻿using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
-namespace Dialogues.Editor
+namespace Dialogues.Editor.DialogueGraph.Utils
 {
     public static class NodeExtensions
     {

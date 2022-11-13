@@ -3,7 +3,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Dialogues.Editor.Nodes
+namespace Dialogues.Editor.DialogueGraph.Nodes
 {
     /// <summary>
     /// source: https://forum.unity.com/threads/graphview-state-machine-graph.960057/#post-7115239

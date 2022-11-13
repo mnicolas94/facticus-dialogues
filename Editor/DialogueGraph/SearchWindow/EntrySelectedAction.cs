@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Dialogues.Editor.SearchWindow
+namespace Dialogues.Editor.DialogueGraph.SearchWindow
 {
     public class EntrySelectedAction
     {

@@ -7,7 +7,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Dialogues.Editor.SearchWindow
+namespace Dialogues.Editor.DialogueGraph.SearchWindow
 {
     public class CreateNodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
     {
@@ -131,7 +131,7 @@ namespace Dialogues.Editor.SearchWindow
                 entry.level = 2;
                 entry.userData = new EntrySelectedAction((graph, position) =>
                 {
-                    graph.AddBinaryNode(operation.ToString(), position, operation);
+                    graph.AddBinaryNode(operation, position);
                 });
                 tree.Add(entry);
             }

@@ -1,33 +1,32 @@
-﻿using Dialogues.Editor.Ports;
-using Dialogues.Editor.Utils;
+﻿using System;
+using Dialogues.Editor.DialogueGraph.Ports;
+using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Dialogues.Editor.Nodes
+namespace Dialogues.Editor.DialogueGraph.Nodes
 {
-    public class DialogueNode : Node
+    [Serializable]
+    public sealed class DialogueNode : Node, ISerializableNode
     {
-        private DialogueLine _dialogueLine;
+        [SerializeField] private DialogueLine _dialogueLine;
         private SerializedObject _serializedDialogueLine;
         private SerializedProperty _lineDataProperty;
-        
-        public DialogueNode() : this(ScriptableObject.CreateInstance<DialogueLine>())
-        {
-        }
 
         public DialogueNode(DialogueLine dialogueLine)
         {
-            this.AddStyleSheet("Styles/Nodes/DialogueNode");
             _dialogueLine = dialogueLine;
             _serializedDialogueLine = new SerializedObject(dialogueLine);
-            _lineDataProperty = _serializedDialogueLine.FindProperty(DialogueLine.LineDataFieldName);
+            _lineDataProperty = _serializedDialogueLine.FindProperty(DialogueLine.EditorLineDataFieldName);
             SetupUi();
         }
 
         private void SetupUi()
         {
+            title = "Dialogue";
+            this.AddStyleSheet("Styles/Nodes/DialogueNode");
             var imguiContainer = new IMGUIContainer(() =>
             {
                 EditorGUI.BeginChangeCheck();
@@ -47,6 +46,11 @@ namespace Dialogues.Editor.Nodes
             
             RefreshExpandedState();
             RefreshPorts();
+        }
+
+        public Node Deserialize()
+        {
+            return new DialogueNode(_dialogueLine);
         }
     }
 }

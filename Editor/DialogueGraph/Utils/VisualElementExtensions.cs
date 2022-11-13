@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Dialogues.Editor.Utils
+namespace Dialogues.Editor.DialogueGraph.Utils
 {
     public static class VisualElementExtensions
     {

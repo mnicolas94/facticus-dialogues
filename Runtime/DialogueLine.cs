@@ -14,7 +14,7 @@ namespace Dialogues
         [SerializeField] private SerializableInterface<ITrigger> _trigger;
 
 #if UNITY_EDITOR
-        public static readonly string LineDataFieldName = nameof(_lineData);
+        public static readonly string EditorLineDataFieldName = nameof(_lineData);
 #endif
     }
 }

@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Dialogues.Checks;
-using Dialogues.Editor.Nodes;
-using Dialogues.Editor.Ports;
-using Dialogues.Editor.SearchWindow;
-using Dialogues.Editor.Utils;
+using Dialogues.Editor.DialogueGraph.Nodes;
+using Dialogues.Editor.DialogueGraph.Ports;
+using Dialogues.Editor.DialogueGraph.SearchWindow;
+using Dialogues.Editor.DialogueGraph.Utils;
 using Dialogues.Triggers;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Dialogues.Editor
+namespace Dialogues.Editor.DialogueGraph
 {
     public class DialogueGraphView : GraphView
     {
         private DialoguesDatabase _database;
         
-        private readonly Vector2 _defaultNodeSize = new Vector2(700, 300);
-        private CreateNodeSearchWindowProvider _searchProvider;
+        public static CreateNodeSearchWindowProvider _searchProvider;
+        private EntryNode _entryNode;
 
         public DialoguesDatabase Database
         {
@@ -33,9 +33,45 @@ namespace Dialogues.Editor
         public DialogueGraphView(EditorWindow editorWindow, DialoguesDatabase database)
         {
             _database = database;
-            SetupUi();
             AddNodeSearchWindow(editorWindow);
+            SetupUi();
             CreateEntryNode();
+        }
+
+        public void SaveGraph(Dialogue dialogue)
+        {
+            // clear dialogue lines
+            // clear dialogue connections
+            
+            // foreach dialogue node
+            //     add line to dialogue
+            //     connect check to line
+            //     connect triggers to line
+            
+            // 
+            
+            // serialize edges
+            
+            var editorData = new DialogueEditorData(nodes.ToList());
+            dialogue.EditorData = editorData;
+            
+            EditorUtility.SetDirty(dialogue);
+            AssetDatabase.SaveAssets();
+        }
+
+        public void LoadGraph(Dialogue dialogue)
+        {
+            if (dialogue == null)
+            {
+                return;
+            }
+            
+            var editorData = dialogue.EditorData;
+            foreach (var (serializedNode, position) in editorData.Nodes)
+            {
+                var node = serializedNode.Value.Deserialize();
+                AddNode(node, position);
+            }
         }
 
         private void AddNodeSearchWindow(EditorWindow editorWindow)
@@ -48,7 +84,7 @@ namespace Dialogues.Editor
                 UnityEditor.Experimental.GraphView.SearchWindow.Open(searchWindowContext, _searchProvider);
             };
         }
-
+        
         private void SetupUi()
         {
             this.AddStyleSheet("Styles/DialogueGraphView");
@@ -56,7 +92,6 @@ namespace Dialogues.Editor
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
-
             var grid = new GridBackground();
             grid.StretchToParentSize();
             Insert(0, grid);
@@ -76,26 +111,31 @@ namespace Dialogues.Editor
 
         private void CreateEntryNode()
         {
-            var node = new EntryNode()
+            _entryNode = new EntryNode()
             {
                 title = "Start"
             };
 
-            AddNode(node, Vector2.zero);
+            AddNode(_entryNode, Vector2.zero);
+            RegisterCallback<GeometryChangedEvent>(RepositionEntryNodeOnGeometryChange);
         }
 
+        private void RepositionEntryNodeOnGeometryChange(GeometryChangedEvent evt)
+        {
+            FrameNext();
+            UnregisterCallback<GeometryChangedEvent>(RepositionEntryNodeOnGeometryChange);
+        }
+        
         public void AddNode(Node node, Vector2 position)
         {
-            node.SetPosition(new Rect(position, _defaultNodeSize));
+            node.SetPosition(new Rect(position, Vector2.zero));
             AddElement(node);
         }
         
         public void AddDefaultDialogueNode(string title, Vector2 position)
         {
-            var node = new DialogueNode()
-            {
-                title = title
-            };
+            var defaultDialogueLine = ScriptableObject.CreateInstance<DialogueLine>();
+            var node = new DialogueNode(defaultDialogueLine);
             AddNode(node, position);
         }
         
@@ -103,11 +143,7 @@ namespace Dialogues.Editor
         {
             var checksDatabase = _database.ChecksDatabase;
             var check = checksDatabase.CreateNew(checkName);
-            var displayName = checksDatabase.GetDisplayName(check);
-            var node = new CheckNode(check, checksDatabase)
-            {
-                title = displayName
-            };
+            var node = new CheckNode(check, _database);
             AddNode(node, position);
             node.StartRename();
         }
@@ -115,11 +151,7 @@ namespace Dialogues.Editor
         public void AddCheckNode(Check check, Vector2 position)
         {
             var checksDatabase = _database.ChecksDatabase;
-            var displayName = checksDatabase.GetDisplayName(check);
-            var node = new CheckNode(check, checksDatabase)
-            {
-                title = displayName
-            };
+            var node = new CheckNode(check, _database);
             AddNode(node, position);
         }
         
@@ -127,11 +159,7 @@ namespace Dialogues.Editor
         {
             var triggersDatabase = _database.TriggersDatabase;
             var trigger = triggersDatabase.CreateNew(triggerName);
-            var displayName = triggersDatabase.GetDisplayName(trigger);
-            var node = new TriggerNode(trigger, triggersDatabase)
-            {
-                title = displayName
-            };
+            var node = new TriggerNode(trigger, _database);
             AddNode(node, position);
             node.StartRename();
         }
@@ -140,19 +168,13 @@ namespace Dialogues.Editor
         {
             var triggersDatabase = _database.TriggersDatabase;
             var displayName = triggersDatabase.GetDisplayName(trigger);
-            var node = new TriggerNode(trigger, triggersDatabase)
-            {
-                title = displayName
-            };
+            var node = new TriggerNode(trigger, _database);
             AddNode(node, position);
         }
         
-        public void AddBinaryNode(string title, Vector2 position, BinaryOperation operation)
+        public void AddBinaryNode(BinaryOperation operation, Vector2 position)
         {
-            var node = new BooleanNode(operation)
-            {
-                title = title
-            };
+            var node = new BooleanNode(operation);
             AddNode(node, position);
         }
     }
