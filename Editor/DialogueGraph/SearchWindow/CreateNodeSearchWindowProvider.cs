@@ -54,7 +54,7 @@ namespace Dialogues.Editor.DialogueGraph.SearchWindow
             defaultEntry.level = 1;
             defaultEntry.userData = new EntrySelectedAction((graph, position) =>
             {
-                graph.AddDefaultDialogueNode("Dialogue", position);
+                graph.AddDefaultDialogueNode(position);
             });
 
             tree.Add(defaultEntry);

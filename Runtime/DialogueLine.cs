@@ -13,10 +13,20 @@ namespace Dialogues
         [SerializeField] private SerializableInterface<ICheck> _check;
         [SerializeField] private SerializableInterface<ITrigger> _trigger;
 
-
 #if UNITY_EDITOR
+        
         public static readonly string EditorLineDataFieldName = nameof(_lineData);
 
+        public void EditorSetLineData(IDialogueLineData linData)
+        {
+            if (_lineData == null)
+            {
+                _lineData = new SerializableInterface<IDialogueLineData>();
+            }
+            
+            _lineData.Value = linData;
+        }
+        
         public void EditorSetCheck(ICheck check)
         {
             _check.Value = check;
@@ -26,6 +36,7 @@ namespace Dialogues
         {
             _trigger.Value = trigger;
         }
+        
 #endif
     }
 }

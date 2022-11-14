@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dialogues.Checks;
 using Dialogues.Editor.DialogueGraph.Nodes;
@@ -115,9 +116,19 @@ namespace Dialogues.Editor.DialogueGraph
             AddElement(node);
         }
         
-        public void AddDefaultDialogueNode(string title, Vector2 position)
+        public void AddDefaultDialogueNode(Vector2 position)
         {
             var defaultDialogueLine = ScriptableObject.CreateInstance<DialogueLine>();
+            
+            // get default line data type
+            var lineDataTypes = TypeCache.GetTypesDerivedFrom<IDialogueLineData>().ToList();
+            if (lineDataTypes.Count > 0)
+            {
+                var lineDataType = lineDataTypes[0];
+                var lineData = (IDialogueLineData) Activator.CreateInstance(lineDataType);
+                defaultDialogueLine.EditorSetLineData(lineData);
+            }
+            
             var node = new DialogueNode(defaultDialogueLine);
             AddNode(node, position);
         }
@@ -133,7 +144,6 @@ namespace Dialogues.Editor.DialogueGraph
         
         public void AddCheckNode(Check check, Vector2 position)
         {
-            var checksDatabase = _database.ChecksDatabase;
             var node = new CheckNode(check, _database);
             AddNode(node, position);
         }
@@ -149,8 +159,6 @@ namespace Dialogues.Editor.DialogueGraph
         
         public void AddTriggerNode(Trigger trigger, Vector2 position)
         {
-            var triggersDatabase = _database.TriggersDatabase;
-            var displayName = triggersDatabase.GetDisplayName(trigger);
             var node = new TriggerNode(trigger, _database);
             AddNode(node, position);
         }
