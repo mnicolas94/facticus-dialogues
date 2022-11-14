@@ -1,60 +1,70 @@
 ﻿using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Dialogues.Editor.DialogueGraph.Ports
 {
     public static class PortsUtils
     {
-        public static Port CreateEntryPort(string portName)
+        private static Port CreatePort(
+            string portName,
+            Direction direction,
+            Port.Capacity capacity,
+            PortType portType,
+            string stylePath
+            )
         {
             var port = DialoguePort.Create(
                 Orientation.Horizontal,
+                direction,
+                capacity,
+                portType,
+                new EdgeConnectorListener());
+            port.portName = portName;
+            port.portColor = GetPortTypeColor(portType);
+            port.AddStyleSheet(stylePath);
+            return port;
+        }
+
+        public static Port CreateEntryPort(string portName)
+        {
+            return CreatePort(
+                portName,
                 Direction.Output,
                 Port.Capacity.Multi,
                 PortType.Dialogue,
-                new EdgeConnectorListener());
-            port.portName = portName;
-            port.AddStyleSheet("Styles/Ports/EntryPort");
-            return port;
+                "Styles/Ports/EntryPort");
         }
         
         public static Port CreateDialoguePort(string portName, Direction direction, Port.Capacity capacity)
         {
-            var port = DialoguePort.Create(
-                Orientation.Horizontal,
+            return CreatePort(
+                portName,
                 direction,
                 capacity,
                 PortType.Dialogue,
-                new EdgeConnectorListener());
-            port.portName = portName;
-            port.AddStyleSheet("Styles/Ports/DialoguePort");
-            return port;
+                "Styles/Ports/DialoguePort");
         }
         
         public static Port CreateCheckPort(string portName, Direction direction, Port.Capacity capacity)
         {
-            var port = DialoguePort.Create(
-                Orientation.Horizontal,
+            return CreatePort(
+                portName,
                 direction,
                 capacity,
                 PortType.Check,
-                new EdgeConnectorListener());
-            port.portName = portName;
-            port.AddStyleSheet("Styles/Ports/CheckPort");
-            return port;
+                "Styles/Ports/CheckPort");
         }
         
         public static Port CreateTriggerPort(string portName, Direction direction, Port.Capacity capacity)
         {
-            var port = DialoguePort.Create(
-                Orientation.Horizontal,
+            return CreatePort(
+                portName,
                 direction,
                 capacity,
                 PortType.Trigger,
-                new EdgeConnectorListener());
-            port.portName = portName;
-            port.AddStyleSheet("Styles/Ports/TriggerPort");
-            return port;
+                "Styles/Ports/TriggerPort");
         }
 
         public static bool AreCompatible(Port startPort, Port endPort)
@@ -73,6 +83,29 @@ namespace Dialogues.Editor.DialogueGraph.Ports
             }
             
             return startType == endType;
+        }
+
+        private static Color GetPortTypeColor(PortType type)
+        {
+            var stringColor = "";
+            switch (type)
+            {
+                case PortType.Check:
+                    stringColor = "#06D6A0";
+                    break;
+                case PortType.Dialogue:
+                    stringColor = "#118AB2";
+                    break;
+                case PortType.Trigger:
+                    stringColor = "#EF476F";
+                    break;
+                default:
+                    stringColor = "#FFFFFF";
+                    break;
+            }
+
+            ColorUtility.TryParseHtmlString(stringColor, out var color);
+            return color;
         }
     }
 }

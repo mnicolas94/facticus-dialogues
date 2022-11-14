@@ -1,3 +1,11 @@
+#title {
+    background-color: #073b4c
+}
+
+#title-label {
+    -unity-font-style: bold;
+}
+
 #title-button-container {
     align-items: center
 }

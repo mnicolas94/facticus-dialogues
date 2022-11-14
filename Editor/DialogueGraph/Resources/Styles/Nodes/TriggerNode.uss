@@ -1,10 +1,13 @@
 #title: {
     flex-direction: row-reverse;
+    background-color: #ef476f;
 }
 
 #title-label {
     margin-left: 0;
     margin-right: 6px;
+    -unity-font-style: bold;
+    color: #111;
 }
 
 #textField {

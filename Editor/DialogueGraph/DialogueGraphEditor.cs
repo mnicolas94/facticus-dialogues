@@ -53,7 +53,7 @@ namespace Dialogues.Editor.DialogueGraph
             {
                 name = "Dialogue graph view"
             };
-
+            
             _graphView.style.flexGrow = 1;
             rootVisualElement.Add(_graphView);
             _graphView.LoadGraph(_currentDialogue);
