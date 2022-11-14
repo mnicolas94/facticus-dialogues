@@ -1,4 +1,5 @@
-﻿using Dialogues.Editor.DialogueGraph.Ports;
+﻿using System.Collections.Generic;
+using Dialogues.Editor.DialogueGraph.Ports;
 using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor.Experimental.GraphView;
 
@@ -23,6 +24,21 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
             _port = PortsUtils.CreateEntryPort("");
             titleButtonContainer.Add(_port);
             RefreshExpandedState();
+        }
+
+        public List<DialogueNode> GetConnectedDialogueNodes()
+        {
+            var connectedDialogues = new List<DialogueNode>();
+            if (_port.connected)
+            {
+                foreach (var connection in _port.connections)
+                {
+                    var dialogueNode = (DialogueNode) connection.input.node;
+                    connectedDialogues.Add(dialogueNode);
+                }
+            }
+
+            return connectedDialogues;
         }
     }
 }

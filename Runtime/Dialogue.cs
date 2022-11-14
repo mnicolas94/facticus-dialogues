@@ -1,27 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Dialogues.Checks;
-using Dialogues.Triggers;
-using TNRD;
 using UnityEditor;
 using UnityEngine;
+using Utils.Extensions;
 using Utils.Serializables;
 
 namespace Dialogues
 {
     [Serializable]
-    public class DialogueLinesConnectionsDictionary : SerializableDictionary<DialogueLine, List<DialogueLine>>{}
+    public class DialogueLinesConnectionsDictionary : SerializableDictionary<DialogueLine, List<DialogueLine>, DialogueConnectionsStorage>{}
+    
+    [Serializable]
+    public class DialogueConnectionsStorage : SerializableDictionary.Storage<List<DialogueLine>>{}
     
     [CreateAssetMenu(fileName = "Dialogue", menuName = "Facticus/Dialogues/Dialogue", order = 0)]
     public class Dialogue : ScriptableObject
     {
+        [SerializeField] private List<DialogueLine> _startLines;
         [SerializeField] private List<DialogueLine> _lines;
         [SerializeField] private DialogueLinesConnectionsDictionary _linesConnections;
 
         public ReadOnlyCollection<DialogueLine> Lines => _lines.AsReadOnly();
 
-        public List<DialogueLine> NextLines(DialogueLine line)
+        public List<DialogueLine> GetConnectedLines(DialogueLine line)
         {
             var nextLines = new List<DialogueLine>();
             
@@ -43,25 +45,41 @@ namespace Dialogues
             set => _editorData = value;
         }
         
+        public void EditorAddStartLine(DialogueLine line)
+        {
+            _startLines.Add(line);
+            
+            // add line in case it hadn't been added yet
+            EditorAddLine(line);
+        }
+        
         public void EditorAddLine(DialogueLine line)
         {
-            _lines.Add(line);
-            var index = _lines.Count;
-            line.name = $"{name}_line-{index}";
-            AssetDatabase.AddObjectToAsset(line, this);
-            EditorUtility.SetDirty(this);
+            if (!_lines.Contains(line))
+            {
+                _lines.Add(line);
+                var index = _lines.Count;
+                line.name = $"{name}_line-{index}";
+                AssetDatabase.AddObjectToAsset(line, this);
+                EditorUtility.SetDirty(this);
+            }
         }
         
         public void EditorRemoveLine(DialogueLine line)
         {
-            _lines.Remove(line);
-            _linesConnections.Remove(line);
-            AssetDatabase.RemoveObjectFromAsset(line);
-            EditorUtility.SetDirty(this);
+            if (_lines.Contains(line))
+            {
+                _lines.Remove(line);
+                _linesConnections.Remove(line);
+                AssetDatabase.RemoveObjectFromAsset(line);
+                EditorUtility.SetDirty(this);
+            }
         }
 
         public void EditorClearLines()
         {
+            _startLines.Clear();
+            
             var lines = new List<DialogueLine>(_lines);
             foreach (var line in lines)
             {
@@ -71,23 +89,26 @@ namespace Dialogues
         
         public void EditorAddLineConnections(DialogueLine line, List<DialogueLine> connections)
         {
-            if (!_lines.Contains(line))
+            if (connections.Count == 0)
             {
-                EditorAddLine(line);
+                return;
             }
+            
+            // add lines if haven't been added yet
+            EditorAddLine(line);
             
             connections.ForEach(connection =>
             {
-                if (!_lines.Contains(line))
-                {
-                    EditorAddLine(line);
-                }
+                EditorAddLine(line);
             });
 
+            // add connections
             if (!_linesConnections.ContainsKey(line))
             {
-                // TODO
+                _linesConnections.Add(line, new List<DialogueLine>());
             }
+            
+            _linesConnections[line].AddRangeIfNotExists(connections);
         }
 
         public void EditorClearConnections()

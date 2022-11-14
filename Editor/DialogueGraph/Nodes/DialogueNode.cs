@@ -25,6 +25,21 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
 
         public DialogueLine DialogueLine => _dialogueLine;
 
+        public List<DialogueNode> GetConnectedDialogueNodes()
+        {
+            var connectedDialogues = new List<DialogueNode>();
+            if (_outPort.connected)
+            {
+                foreach (var connection in _outPort.connections)
+                {
+                    var dialogueNode = (DialogueNode) connection.input.node;
+                    connectedDialogues.Add(dialogueNode);
+                }
+            }
+
+            return connectedDialogues;
+        }
+        
         public ICheck Check
         {
             get

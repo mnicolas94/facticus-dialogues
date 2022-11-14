@@ -16,15 +16,29 @@ namespace Dialogues.Editor.DialogueGraph
             dialogue.EditorClearLines();
             dialogue.EditorClearConnections();
 
+            // add start dialogue lines
+            var startDialogueNodes = graphView.EntryNode.GetConnectedDialogueNodes();
+            foreach (var startDialogueNode in startDialogueNodes)
+            {
+                var dialogueLine = startDialogueNode.DialogueLine;
+                dialogue.EditorAddStartLine(dialogueLine);
+            }
+            
             // add dialogue lines
             var dialogueNodes = graphView.nodes.Where(node => node is DialogueNode).Cast<DialogueNode>();
             foreach (var dialogueNode in dialogueNodes)
             {
+                // add line
                 var dialogueLine = dialogueNode.DialogueLine;
                 dialogueLine.EditorSetCheck(dialogueNode.Check);
                 dialogueLine.EditorSetTrigger(dialogueNode.Trigger);
                 EditorUtility.SetDirty(dialogueLine);
                 dialogue.EditorAddLine(dialogueLine);
+
+                // add connections
+                var connectedDialogueNodes = dialogueNode.GetConnectedDialogueNodes();
+                var connectedLines = connectedDialogueNodes.ConvertAll(connectedDialogueLine => connectedDialogueLine.DialogueLine);
+                dialogue.EditorAddLineConnections(dialogueLine, connectedLines);
             }
             
             // --- serialize graph data

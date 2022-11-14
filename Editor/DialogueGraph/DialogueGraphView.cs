@@ -53,6 +53,7 @@ namespace Dialogues.Editor.DialogueGraph
                 }
             }
 
+            _entryNode.Port.DisconnectAll();
             _entryNode.RefreshPorts();
         }
         
