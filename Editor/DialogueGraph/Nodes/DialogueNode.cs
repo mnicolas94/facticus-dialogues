@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Dialogues.Checks;
 using Dialogues.Editor.DialogueGraph.Ports;
 using Dialogues.Editor.DialogueGraph.Utils;
+using Dialogues.Triggers;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -23,8 +25,37 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
 
         public DialogueLine DialogueLine => _dialogueLine;
 
-        public ICheck Check => null;
-        
+        public ICheck Check
+        {
+            get
+            {
+                if (_checkPort.connected)
+                {
+                    var connections = _checkPort.connections.ToList();
+                    var connection = connections[0];
+                    var connectedCheckNode = (ICheckProvider) connection.output.node;
+                    return connectedCheckNode.GetCheck();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public ITrigger Trigger
+        {
+            get
+            {
+                var triggers = _triggerPort.connections.Select(connection =>
+                {
+                    var trigger = ((TriggerNode) connection.input.node).Property;
+                    return trigger;
+                }).ToList();
+                return new TriggerList(triggers);
+            }
+        }
+
         public DialogueNode(DialogueLine dialogueLine)
         {
             _dialogueLine = dialogueLine;
@@ -45,6 +76,7 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
                 if (changed)
                 {
                     RefreshExpandedState();
+                    _serializedDialogueLine.ApplyModifiedProperties();
                 }
             });
             Add(imguiContainer);

@@ -11,7 +11,18 @@ namespace Dialogues.Checks
         [SerializeField] private BinaryOperation _operation;
         [SerializeField] private SerializableInterface<ICheck> _checkA;
         [SerializeField] private SerializableInterface<ICheck> _checkB;
-        
+
+        public BinaryCheck(BinaryOperation operation, ICheck checkA, ICheck checkB)
+        {
+            _operation = operation;
+            _checkA = new SerializableInterface<ICheck>{Value = checkA};
+            _checkB = new SerializableInterface<ICheck>{Value = checkB};
+        }
+
+        public BinaryCheck() : this(BinaryOperation.AND, null, null)
+        {
+        }
+
         public bool IsMet()
         {
             var valueA = _checkA.Value.IsMet();

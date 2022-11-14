@@ -7,7 +7,7 @@ using UnityEditor.Experimental.GraphView;
 namespace Dialogues.Editor.DialogueGraph.Nodes
 {
     [Serializable]
-    public sealed class CheckNode : PropertyNode<Check>
+    public sealed class CheckNode : PropertyNode<Check>, ICheckProvider
     {
         public CheckNode(Check property, DialoguesDatabase database) : base(property, database)
         {
@@ -30,6 +30,11 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
         public override Node Deserialize()
         {
             return new CheckNode(_property, _database);
+        }
+
+        public ICheck GetCheck()
+        {
+            return _property;
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
         [SerializeField] protected DialoguesDatabase _database;
         private Port _port;
 
+        public T Property => _property;
+
         public PropertyNode(T property, DialoguesDatabase database)
         {
             _property = property;

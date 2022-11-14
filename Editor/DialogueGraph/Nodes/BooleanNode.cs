@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Dialogues.Checks;
 using Dialogues.Editor.DialogueGraph.Ports;
 using Dialogues.Editor.DialogueGraph.Utils;
@@ -10,7 +11,7 @@ using UnityEngine.UIElements;
 namespace Dialogues.Editor.DialogueGraph.Nodes
 {
     [Serializable]
-    public sealed class BooleanNode : Node, ISerializableNode
+    public sealed class BooleanNode : Node, ISerializableNode, ICheckProvider
     {
         [SerializeField] private BinaryOperation _booleanOperation;
         private Port _inA;
@@ -48,6 +49,26 @@ namespace Dialogues.Editor.DialogueGraph.Nodes
         public List<Port> GetPorts()
         {
             return new List<Port>{ _inA, _inB, _out};
+        }
+
+        public ICheck GetCheck()
+        {
+            ICheck checkA = null;
+            if (_inA.connected)
+            {
+                var inputA = (ICheckProvider) _inA.connections.ToList()[0].output.node;
+                checkA = inputA?.GetCheck();
+            }
+            
+            ICheck checkB = null;
+            if (_inB.connected)
+            {
+                var inputB = (ICheckProvider) _inB.connections.ToList()[0].output.node;
+                checkB = inputB?.GetCheck();
+            }
+            
+            var binaryCheck = new BinaryCheck(_booleanOperation, checkA, checkB);
+            return binaryCheck;
         }
     }
 }

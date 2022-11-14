@@ -21,6 +21,8 @@ namespace Dialogues.Editor.DialogueGraph
         private static CreateNodeSearchWindowProvider _searchProvider;
         private EntryNode _entryNode;
 
+        public EntryNode EntryNode => _entryNode;
+
         public DialoguesDatabase Database
         {
             get => _database;
@@ -39,139 +41,7 @@ namespace Dialogues.Editor.DialogueGraph
             CreateEntryNode();
         }
 
-        
-        public void SaveGraph(Dialogue dialogue)
-        {
-            // clear dialogue data
-            dialogue.EditorClearLines();
-            dialogue.EditorClearConnections();
-
-            var dialogueNodes = nodes.Where(node => node is DialogueNode).Cast<DialogueNode>();
-            foreach (var dialogueNode in dialogueNodes)
-            {
-            }
-            // foreach dialogue node
-            //     add line to dialogue
-            //     connect check to line
-            //     connect triggers to line
-            
-            // serialize nodes
-            var serializableNodes = nodes
-                .Where(node => node is ISerializableNode)
-                .ToList();
-            var serializableNodesPositions = serializableNodes
-                .Select(node => ((ISerializableNode) node, node.GetPosition().position))
-                .Select(tuple =>
-                {
-                    var (node, position) = tuple;
-                    var serializableInterface = new SerializableInterface<ISerializableNode> {Value = node};
-                    var serializedNodePosition = new SerializedNodePosition
-                    {
-                        node = serializableInterface,
-                        position = position
-                    };
-                    return serializedNodePosition;
-                })
-                .ToList();
-
-            // serialize edges
-            var nodesPorts = new Dictionary<ISerializableNode, (int, List<Port>)>();
-            for (int i = 0; i < serializableNodes.Count; i++)
-            {
-                var serializableNode = (ISerializableNode) serializableNodes[i];
-                var ports = serializableNode.GetPorts();
-                nodesPorts.Add(serializableNode, (i, ports));
-            }
-
-            var serializableEdges = new List<SerializableEdge>();
-            foreach (var edge in edges)
-            {
-                var (inputNodeIndex, inputPortIndex) = GetNodePortIndices(edge.input.node, edge.input, nodesPorts);
-                var (outputNodeIndex, outputPortIndex) = GetNodePortIndices(edge.output.node, edge.output, nodesPorts);
-
-                var serializableEdge = new SerializableEdge
-                {
-                    inputNodeIndex = inputNodeIndex,
-                    inputPortIndex = inputPortIndex,
-                    outputNodeIndex = outputNodeIndex,
-                    outputPortIndex = outputPortIndex,
-                };
-                
-                serializableEdges.Add(serializableEdge);
-            }
-            
-            var editorData = new DialogueEditorData(serializableNodesPositions, serializableEdges);
-            dialogue.EditorData = editorData;
-            
-            EditorUtility.SetDirty(dialogue);
-            AssetDatabase.SaveAssets();
-        }
-
-        private static (int, int) GetNodePortIndices(
-            Node node, Port port, Dictionary<ISerializableNode, (int, List<Port>)> nodesPorts)
-        {
-            if (node is ISerializableNode serializableNode)
-            {
-                var (inputNodeIndex, inputPorts) = nodesPorts[serializableNode];
-                var inputPortIndex = inputPorts.IndexOf(port);
-                return (inputNodeIndex, inputPortIndex);
-            }
-
-            return (-1, -1);
-        }
-
-        public void LoadGraph(Dialogue dialogue)
-        {
-            ClearGraph();
-            
-            if (dialogue == null)
-            {
-                return;
-            }
-            
-            var editorData = dialogue.EditorData;
-            var tempNodes = new List<Node>();
-            foreach (var (serializedNode, position) in editorData.Nodes)
-            {
-                var node = serializedNode.Value.Deserialize();
-                AddNode(node, position);
-                tempNodes.Add(node);
-            }
-            
-            // deserialize edges
-            foreach (var serializedEdge in editorData.Edges)
-            {
-                var inputPort = GetPortFromSerializedEdgeIndices(
-                    tempNodes, serializedEdge.inputNodeIndex, serializedEdge.inputPortIndex);
-                
-                var outputPort = GetPortFromSerializedEdgeIndices(
-                    tempNodes, serializedEdge.outputNodeIndex, serializedEdge.outputPortIndex);
-
-                var edge = new Edge
-                {
-                    input = inputPort,
-                    output = outputPort
-                };
-                AddElement(edge);
-                inputPort.Connect(edge);
-                outputPort.Connect(edge);
-            }
-        }
-
-        private Port GetPortFromSerializedEdgeIndices(List<Node> tempNodes, int nodeIndex, int portIndex)
-        {
-            if (nodeIndex >= 0)
-            {
-                var inputNode = tempNodes[nodeIndex];
-                var inputPorts = ((ISerializableNode) inputNode).GetPorts();
-                var inputPort = inputPorts[portIndex];
-                return inputPort;
-            }
-
-            return _entryNode.Port;
-        }
-
-        private void ClearGraph()
+        public void ClearGraph()
         {
             IEnumerable<GraphElement> elements = nodes.Cast<GraphElement>().Concat(edges);
             
