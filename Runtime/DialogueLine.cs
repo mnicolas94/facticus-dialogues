@@ -13,6 +13,18 @@ namespace Dialogues
         [SerializeField] private SerializableInterface<ICheck> _check;
         [SerializeField] private SerializableInterface<ITrigger> _trigger;
 
+        public IDialogueLineData LineData => _lineData.Value;
+
+        public bool EvaluateCheck()
+        {
+            return _check?.Value == null || _check.Value.IsMet();
+        }
+
+        public void ExecuteTrigger()
+        {
+            _trigger.Value?.Invoke();
+        }
+
 #if UNITY_EDITOR
         
         public static readonly string EditorLineDataFieldName = nameof(_lineData);

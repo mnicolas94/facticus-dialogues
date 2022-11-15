@@ -25,8 +25,8 @@ namespace Dialogues.Checks
 
         public bool IsMet()
         {
-            var valueA = _checkA.Value.IsMet();
-            var valueB = _checkB.Value.IsMet();
+            var valueA = _checkA.Value != null && _checkA.Value.IsMet();
+            var valueB = _checkB.Value != null && _checkB.Value.IsMet();
 
             switch (_operation)
             {

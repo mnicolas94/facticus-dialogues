@@ -17,10 +17,22 @@ namespace Dialogues
     [CreateAssetMenu(fileName = "Dialogue", menuName = "Facticus/Dialogues/Dialogue", order = 0)]
     public class Dialogue : ScriptableObject
     {
+        [ContextMenu("Iterate")]
+        public void IterateTest()
+        {
+            foreach (var line in this.Iterate())
+            {
+                Debug.Log(line.LineData.ToString());
+            }
+        }
+        
+        
         [SerializeField] private List<DialogueLine> _startLines;
         [SerializeField] private List<DialogueLine> _lines;
         [SerializeField] private DialogueLinesConnectionsDictionary _linesConnections;
 
+        public ReadOnlyCollection<DialogueLine> StartLines => _startLines.AsReadOnly();
+        
         public ReadOnlyCollection<DialogueLine> Lines => _lines.AsReadOnly();
 
         public List<DialogueLine> GetConnectedLines(DialogueLine line)

@@ -11,5 +11,10 @@ namespace Dialogues.Samples.Scripts
 
         [Space(12)]
         [SerializeField] private string _dialogueText;
+
+        public override string ToString()
+        {
+            return $"{_characterName}: {_dialogueText}";
+        }
     }
 }

@@ -9,11 +9,10 @@ namespace Dialogues.Checks
         [SerializeField, HideInInspector] private string _displayName;
         [SerializeField] private SerializableInterface<ISerializablePredicate> _predicate;
 
-        public string DisplayName => _displayName;
-
         public bool IsMet()
         {
-            return _predicate.Value.IsMet();
+            var predicate = _predicate.Value;
+            return predicate != null && predicate.IsMet();
         }
     }
 }
