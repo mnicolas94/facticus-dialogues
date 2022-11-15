@@ -1,11 +1,11 @@
 {
-    "name": "com.facticus.dialogues",
+    "name": "com.facticus.dialogues.Samples",
     "rootNamespace": "",
     "references": [
-        "GUID:4aacf4ad2c5335449beb48d6d9ec2f78",
-        "GUID:c35c6d9084ba1a541868fbd8c50a585a",
+        "GUID:48d718e2f73f47c48be09822f5881d60",
+        "GUID:cc000f534193819459fccdfdfd4c8298",
         "GUID:11a2306c728a4b843a652ec6c2f142bc",
-        "GUID:23eed6c2401dca1419d1ebd180e58c5a",
+        "GUID:c35c6d9084ba1a541868fbd8c50a585a",
         "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],

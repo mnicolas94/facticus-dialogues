@@ -1,0 +1,555 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9165337641093740166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Test_line-6
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305496
+  _check:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305553
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 805541053820305496
+      type: {class: CustomDialogueLineData, ns: Dialogues.Samples.Scripts, asm: com.facticus.dialogues.Samples}
+      data:
+        _character: {fileID: 11400000, guid: 7a821c8807dc5a64aaf0e2132ba3dda2, type: 2}
+        _dialogueText: Hi Foo
+    - rid: 805541053820305553
+      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      data:
+        _triggers: []
+--- !u!114 &-4225563474421905213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Test_line-8
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305498
+  _check:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305554
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 805541053820305498
+      type: {class: CustomDialogueLineData, ns: Dialogues.Samples.Scripts, asm: com.facticus.dialogues.Samples}
+      data:
+        _character: {fileID: 11400000, guid: 7a821c8807dc5a64aaf0e2132ba3dda2, type: 2}
+        _dialogueText: Right away!
+    - rid: 805541053820305554
+      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      data:
+        _triggers:
+        - {fileID: -5744425388620646072, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+--- !u!114 &-3602440257401676592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Test_line-5
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305495
+  _check:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305555
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 805541053820305495
+      type: {class: CustomDialogueLineData, ns: Dialogues.Samples.Scripts, asm: com.facticus.dialogues.Samples}
+      data:
+        _character: {fileID: 11400000, guid: 7a821c8807dc5a64aaf0e2132ba3dda2, type: 2}
+        _dialogueText: Yes, of course!
+    - rid: 805541053820305555
+      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      data:
+        _triggers:
+        - {fileID: 6665654603929526297, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+--- !u!114 &-1252477391125223825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Test_line-4
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305494
+  _check:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305556
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 805541053820305494
+      type: {class: CustomDialogueLineData, ns: Dialogues.Samples.Scripts, asm: com.facticus.dialogues.Samples}
+      data:
+        _character: {fileID: 11400000, guid: d839843303232b74495044194251ecb7, type: 2}
+        _dialogueText: Could you change the screen's color?
+    - rid: 805541053820305556
+      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      data:
+        _triggers: []
+--- !u!114 &-685176920134543239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Test_line-3
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305493
+  _check:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305557
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 805541053820305493
+      type: {class: CustomDialogueLineData, ns: Dialogues.Samples.Scripts, asm: com.facticus.dialogues.Samples}
+      data:
+        _character: {fileID: 11400000, guid: 7a821c8807dc5a64aaf0e2132ba3dda2, type: 2}
+        _dialogueText: Hi Foo, I'm Bar
+    - rid: 805541053820305557
+      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      data:
+        _triggers: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211fcffc7051485f90a5009a9efedc4d, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  _startLines:
+  - {fileID: 2054570721333576528}
+  - {fileID: 437641042312588008}
+  _lines:
+  - {fileID: 2054570721333576528}
+  - {fileID: 437641042312588008}
+  - {fileID: -685176920134543239}
+  - {fileID: -1252477391125223825}
+  - {fileID: -3602440257401676592}
+  - {fileID: -9165337641093740166}
+  - {fileID: 1908114766108715957}
+  - {fileID: -4225563474421905213}
+  _linesConnections:
+    m_keys:
+    - {fileID: 2054570721333576528}
+    - {fileID: 437641042312588008}
+    - {fileID: -685176920134543239}
+    - {fileID: -1252477391125223825}
+    - {fileID: -9165337641093740166}
+    - {fileID: 1908114766108715957}
+    m_values:
+    - data:
+      - {fileID: -685176920134543239}
+    - data:
+      - {fileID: -9165337641093740166}
+    - data:
+      - {fileID: -1252477391125223825}
+    - data:
+      - {fileID: -3602440257401676592}
+    - data:
+      - {fileID: 1908114766108715957}
+    - data:
+      - {fileID: -4225563474421905213}
+  _editorData:
+    _nodes:
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305558
+      position: {x: 252, y: -216.8}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305559
+      position: {x: 252, y: 44}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305560
+      position: {x: 672.8, y: -216.8}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305561
+      position: {x: 1097.6, y: -216.8}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305562
+      position: {x: 1514.3999, y: -216.8}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305563
+      position: {x: 1924.7999, y: -138.4}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305564
+      position: {x: 672.8, y: 44}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305565
+      position: {x: 1097.6, y: 44}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305566
+      position: {x: 1514.3999, y: 29.599998}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305567
+      position: {x: 1969.6, y: 79.2}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305568
+      position: {x: 16.800001, y: -160}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541053820305569
+      position: {x: 35.2, y: 156}
+    _edges:
+    - inputNodeIndex: 0
+      inputPortIndex: 0
+      outputNodeIndex: -1
+      outputPortIndex: -1
+    - inputNodeIndex: 2
+      inputPortIndex: 0
+      outputNodeIndex: 0
+      outputPortIndex: 1
+    - inputNodeIndex: 3
+      inputPortIndex: 0
+      outputNodeIndex: 2
+      outputPortIndex: 1
+    - inputNodeIndex: 4
+      inputPortIndex: 0
+      outputNodeIndex: 3
+      outputPortIndex: 1
+    - inputNodeIndex: 5
+      inputPortIndex: 0
+      outputNodeIndex: 4
+      outputPortIndex: 3
+    - inputNodeIndex: 6
+      inputPortIndex: 0
+      outputNodeIndex: 1
+      outputPortIndex: 1
+    - inputNodeIndex: 7
+      inputPortIndex: 0
+      outputNodeIndex: 6
+      outputPortIndex: 1
+    - inputNodeIndex: 8
+      inputPortIndex: 0
+      outputNodeIndex: 7
+      outputPortIndex: 1
+    - inputNodeIndex: 9
+      inputPortIndex: 0
+      outputNodeIndex: 8
+      outputPortIndex: 3
+    - inputNodeIndex: 1
+      inputPortIndex: 0
+      outputNodeIndex: -1
+      outputPortIndex: -1
+    - inputNodeIndex: 0
+      inputPortIndex: 2
+      outputNodeIndex: 10
+      outputPortIndex: 0
+    - inputNodeIndex: 1
+      inputPortIndex: 2
+      outputNodeIndex: 11
+      outputPortIndex: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 805541053820305558
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: 2054570721333576528}
+    - rid: 805541053820305559
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: 437641042312588008}
+    - rid: 805541053820305560
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: -685176920134543239}
+    - rid: 805541053820305561
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: -1252477391125223825}
+    - rid: 805541053820305562
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: -3602440257401676592}
+    - rid: 805541053820305563
+      type: {class: TriggerNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _property: {fileID: 6665654603929526297, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+        _database: {fileID: 11400000, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+    - rid: 805541053820305564
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: -9165337641093740166}
+    - rid: 805541053820305565
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: 1908114766108715957}
+    - rid: 805541053820305566
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: -4225563474421905213}
+    - rid: 805541053820305567
+      type: {class: TriggerNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _property: {fileID: -5744425388620646072, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+        _database: {fileID: 11400000, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+    - rid: 805541053820305568
+      type: {class: CheckNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _property: {fileID: 630449599438924098, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+        _database: {fileID: 11400000, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+    - rid: 805541053820305569
+      type: {class: CheckNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _property: {fileID: -7472092849649042878, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+        _database: {fileID: 11400000, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+--- !u!114 &437641042312588008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Test_line-2
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305488
+  _check:
+    mode: 0
+    unityReference: {fileID: -7472092849649042878, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305570
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 805541053820305488
+      type: {class: CustomDialogueLineData, ns: Dialogues.Samples.Scripts, asm: com.facticus.dialogues.Samples}
+      data:
+        _character: {fileID: 11400000, guid: d839843303232b74495044194251ecb7, type: 2}
+        _dialogueText: Hi Bar
+    - rid: 805541053820305570
+      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      data:
+        _triggers: []
+--- !u!114 &1908114766108715957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Test_line-7
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305497
+  _check:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305571
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 805541053820305497
+      type: {class: CustomDialogueLineData, ns: Dialogues.Samples.Scripts, asm: com.facticus.dialogues.Samples}
+      data:
+        _character: {fileID: 11400000, guid: d839843303232b74495044194251ecb7, type: 2}
+        _dialogueText: Could you change the color back?
+    - rid: 805541053820305571
+      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      data:
+        _triggers: []
+--- !u!114 &2054570721333576528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Test_line-1
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305487
+  _check:
+    mode: 0
+    unityReference: {fileID: 630449599438924098, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541053820305572
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 805541053820305487
+      type: {class: CustomDialogueLineData, ns: Dialogues.Samples.Scripts, asm: com.facticus.dialogues.Samples}
+      data:
+        _character: {fileID: 11400000, guid: d839843303232b74495044194251ecb7, type: 2}
+        _dialogueText: Hi, my name is Foo
+    - rid: 805541053820305572
+      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      data:
+        _triggers: []

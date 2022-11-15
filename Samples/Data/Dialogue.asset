@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211fcffc7051485f90a5009a9efedc4d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  _lines:
+  - {fileID: 5594442874179770551}
+  - {fileID: 4179778116015871271}
+  _linesConnections:
+    m_keys: []
+  _editorData:
+    _nodes:
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541029884461059
+      position: {x: 620.8, y: -16.000002}
+    - node:
+        mode: 1
+        unityReference: {fileID: 0}
+        rawReference:
+          rid: 805541029884461060
+      position: {x: 247.2, y: -16.000002}
+    _edges:
+    - inputNodeIndex: 1
+      inputPortIndex: 0
+      outputNodeIndex: -1
+      outputPortIndex: -1
+    - inputNodeIndex: 0
+      inputPortIndex: 0
+      outputNodeIndex: 1
+      outputPortIndex: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 805541029884461059
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: 5594442874179770551}
+    - rid: 805541029884461060
+      type: {class: DialogueNode, ns: Dialogues.Editor.DialogueGraph.Nodes, asm: com.facticus.dialogues.Editor}
+      data:
+        _dialogueLine: {fileID: 4179778116015871271}
+--- !u!114 &4179778116015871271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Dialogue_line-2
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 805541029884461058
+  _check:
+    mode: 0
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 0
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 805541029884461058
+      type: {class: CustomDialogueLineData, ns: Dialogues.Samples.Scripts, asm: com.facticus.dialogues.Samples}
+      data:
+        _characterName: 111111
+        _characterSprite: {fileID: 0}
+        _dialogueText: qqqqqq
+--- !u!114 &5594442874179770551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540d68b4dbd4f95972ac4f9dde364db, type: 3}
+  m_Name: Dialogue_line-1
+  m_EditorClassIdentifier: 
+  _lineData:
+    mode: 0
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  _check:
+    mode: 0
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  _trigger:
+    mode: 0
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
