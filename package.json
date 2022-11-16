@@ -1,12 +1,11 @@
 {
   "name": "com.facticus.dialogues",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "displayName": "Dialogues",
   "description": "Dialogue system for Unity",
   "unity": "2021.3",
   "unityRelease": "",
-  "dependencies": {
-  },
+  "dependencies": {},
   "keywords": [],
   "author": {
     "name": "Facticus",
