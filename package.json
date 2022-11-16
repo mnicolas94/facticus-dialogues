@@ -1,6 +1,6 @@
 {
   "name": "com.facticus.dialogues",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "displayName": "Dialogues",
   "description": "Dialogue system for Unity",
   "unity": "2021.3",
