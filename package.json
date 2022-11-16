@@ -21,7 +21,7 @@
     {
       "displayName": "Samples",
       "description": "Dialogues system samples. You will need to import https://github.com/mnicolas94/unity-async-utils.git for the samples to work.",
-      "path": "Samples/"
+      "path": "Samples/Sample"
     }
   ],
   "license": "MIT"
