@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Dialogues.Core
 {
+#if UNITY_EDITOR
+    
     public class PropertyDatabaseHandler<T> where T : ScriptableObject
     {
         private ScriptableObject _assetOwner;
@@ -73,4 +75,5 @@ namespace Dialogues.Core
             AssetDatabase.SaveAssets();
         }
     }
+#endif
 }
