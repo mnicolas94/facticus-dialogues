@@ -1,4 +1,4 @@
-﻿using Dialogues.Checks;
+﻿using Dialogues.Core.Checks;
 
 namespace Dialogues.Editor.DialogueGraph.Nodes
 {

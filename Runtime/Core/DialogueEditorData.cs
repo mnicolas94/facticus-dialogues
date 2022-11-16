@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TNRD;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace Dialogues
+#if UNITY_EDITOR
+using UnityEditor.Experimental.GraphView;
+#endif
+
+namespace Dialogues.Core
 {
 #if UNITY_EDITOR
     /// <summary>
@@ -67,5 +69,4 @@ namespace Dialogues
     }
     
 #endif
-
 }

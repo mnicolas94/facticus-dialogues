@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AsyncUtils;
+using Dialogues.Core;
 using Dialogues.View;
 using UnityEngine;
 

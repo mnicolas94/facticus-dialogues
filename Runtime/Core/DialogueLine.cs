@@ -1,10 +1,10 @@
 ﻿using System;
-using Dialogues.Checks;
-using Dialogues.Triggers;
+using Dialogues.Core.Checks;
+using Dialogues.Core.Triggers;
 using TNRD;
 using UnityEngine;
 
-namespace Dialogues
+namespace Dialogues.Core
 {
     [Serializable]
     public class DialogueLine : ScriptableObject

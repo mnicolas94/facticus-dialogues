@@ -2,7 +2,7 @@
 using System.Linq;
 using Utils.Extensions;
 
-namespace Dialogues
+namespace Dialogues.Core
 {
     public static class DialogueIteration
     {

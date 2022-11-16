@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Dialogues.Core;
 using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;

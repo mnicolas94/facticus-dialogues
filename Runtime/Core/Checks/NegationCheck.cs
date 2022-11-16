@@ -2,7 +2,7 @@
 using TNRD;
 using UnityEngine;
 
-namespace Dialogues.Checks
+namespace Dialogues.Core.Checks
 {
     [Serializable]
     public class NegationCheck : ICheck

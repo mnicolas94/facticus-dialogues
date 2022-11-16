@@ -2,7 +2,7 @@
 using UnityEngine;
 using Utils.Serializables;
 
-namespace Dialogues.Checks
+namespace Dialogues.Core.Checks
 {
     public class Check : ScriptableObject, ICheck
     {

@@ -1,4 +1,5 @@
-﻿using Dialogues.Editor.DialogueGraph.Utils;
+﻿using Dialogues.Core;
+using Dialogues.Editor.DialogueGraph.Utils;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;

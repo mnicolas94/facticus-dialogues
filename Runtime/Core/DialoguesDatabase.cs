@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Dialogues.Checks;
-using Dialogues.Triggers;
+using Dialogues.Core.Checks;
+using Dialogues.Core.Triggers;
 using UnityEngine;
 
-namespace Dialogues
+namespace Dialogues.Core
 {
     [CreateAssetMenu(fileName = "DialoguesDatabase", menuName = "Facticus/Dialogues/Database", order = 0)]
     public class DialoguesDatabase : ScriptableObject

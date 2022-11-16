@@ -1,4 +1,4 @@
-﻿namespace Dialogues.Checks
+﻿namespace Dialogues.Core.Checks
 {
     public enum BinaryOperation
     {

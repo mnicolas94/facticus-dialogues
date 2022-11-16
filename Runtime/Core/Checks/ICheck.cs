@@ -1,6 +1,6 @@
 ﻿using Utils.Serializables;
 
-namespace Dialogues.Checks
+namespace Dialogues.Core.Checks
 {
     public interface ICheck : ISerializablePredicate
     {

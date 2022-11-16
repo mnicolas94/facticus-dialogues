@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Dialogues.Triggers
+namespace Dialogues.Core.Triggers
 {
     [Serializable]
     public class TriggerList : ITrigger

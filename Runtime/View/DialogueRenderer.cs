@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Dialogues.Core;
 using TNRD;
 using UnityEngine;
 

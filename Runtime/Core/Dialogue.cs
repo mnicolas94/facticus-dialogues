@@ -6,7 +6,7 @@ using UnityEngine;
 using Utils.Extensions;
 using Utils.Serializables;
 
-namespace Dialogues
+namespace Dialogues.Core
 {
     [Serializable]
     public class DialogueLinesConnectionsDictionary : SerializableDictionary<DialogueLine, List<DialogueLine>, DialogueConnectionsStorage>{}

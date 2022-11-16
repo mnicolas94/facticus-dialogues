@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Dialogues.Core;
 using UnityEngine;
 
 namespace Dialogues.Samples.Scripts

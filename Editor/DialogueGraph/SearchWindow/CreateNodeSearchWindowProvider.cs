@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dialogues.Checks;
+using Dialogues.Core;
+using Dialogues.Core.Checks;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;

@@ -1,9 +1,8 @@
 ﻿using System;
 using TNRD;
 using UnityEngine;
-using Utils.Serializables;
 
-namespace Dialogues.Checks
+namespace Dialogues.Core.Checks
 {
     [Serializable]
     public class BinaryCheck : ICheck

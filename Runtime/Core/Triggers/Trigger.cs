@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Dialogues.Triggers
+namespace Dialogues.Core.Triggers
 {
     public class Trigger : ScriptableObject, ITrigger
     {

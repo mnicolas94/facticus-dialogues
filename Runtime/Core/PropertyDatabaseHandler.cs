@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Dialogues.Checks;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
-namespace Dialogues
+namespace Dialogues.Core
 {
     public class PropertyDatabaseHandler<T> where T : ScriptableObject
     {

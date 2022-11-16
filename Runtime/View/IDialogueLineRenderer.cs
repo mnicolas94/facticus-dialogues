@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Dialogues.Core;
 
 namespace Dialogues.View
 {

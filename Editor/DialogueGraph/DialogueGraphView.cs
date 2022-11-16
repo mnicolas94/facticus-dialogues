@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dialogues.Checks;
+using Dialogues.Core;
+using Dialogues.Core.Checks;
+using Dialogues.Core.Triggers;
 using Dialogues.Editor.DialogueGraph.Nodes;
 using Dialogues.Editor.DialogueGraph.Ports;
 using Dialogues.Editor.DialogueGraph.SearchWindow;
 using Dialogues.Editor.DialogueGraph.Utils;
-using Dialogues.Triggers;
 using TNRD;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;

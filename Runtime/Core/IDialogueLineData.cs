@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace Dialogues
+﻿namespace Dialogues.Core
 {
     public interface IDialogueLineData
     {

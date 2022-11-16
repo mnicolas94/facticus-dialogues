@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Dialogues.Core;
 using Dialogues.Editor.DialogueGraph.Nodes;
 using TNRD;
 using UnityEditor;
