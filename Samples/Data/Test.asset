@@ -38,7 +38,7 @@ MonoBehaviour:
         _character: {fileID: 11400000, guid: 7a821c8807dc5a64aaf0e2132ba3dda2, type: 2}
         _dialogueText: Hi Foo
     - rid: 805541053820305553
-      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      type: {class: TriggerList, ns: Dialogues.Core.Triggers, asm: com.facticus.dialogues}
       data:
         _triggers: []
 --- !u!114 &-4225563474421905213
@@ -79,7 +79,7 @@ MonoBehaviour:
         _character: {fileID: 11400000, guid: 7a821c8807dc5a64aaf0e2132ba3dda2, type: 2}
         _dialogueText: Right away!
     - rid: 805541053820305554
-      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      type: {class: TriggerList, ns: Dialogues.Core.Triggers, asm: com.facticus.dialogues}
       data:
         _triggers:
         - {fileID: -5744425388620646072, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
@@ -121,7 +121,7 @@ MonoBehaviour:
         _character: {fileID: 11400000, guid: 7a821c8807dc5a64aaf0e2132ba3dda2, type: 2}
         _dialogueText: Yes, of course!
     - rid: 805541053820305555
-      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      type: {class: TriggerList, ns: Dialogues.Core.Triggers, asm: com.facticus.dialogues}
       data:
         _triggers:
         - {fileID: 6665654603929526297, guid: 1be444fab80927246a06b068ac17fe43, type: 2}
@@ -163,7 +163,7 @@ MonoBehaviour:
         _character: {fileID: 11400000, guid: d839843303232b74495044194251ecb7, type: 2}
         _dialogueText: Could you change the screen's color?
     - rid: 805541053820305556
-      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      type: {class: TriggerList, ns: Dialogues.Core.Triggers, asm: com.facticus.dialogues}
       data:
         _triggers: []
 --- !u!114 &-685176920134543239
@@ -204,7 +204,7 @@ MonoBehaviour:
         _character: {fileID: 11400000, guid: 7a821c8807dc5a64aaf0e2132ba3dda2, type: 2}
         _dialogueText: Hi Foo, I'm Bar
     - rid: 805541053820305557
-      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      type: {class: TriggerList, ns: Dialogues.Core.Triggers, asm: com.facticus.dialogues}
       data:
         _triggers: []
 --- !u!114 &11400000
@@ -468,7 +468,7 @@ MonoBehaviour:
         _character: {fileID: 11400000, guid: d839843303232b74495044194251ecb7, type: 2}
         _dialogueText: Hi Bar
     - rid: 805541053820305570
-      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      type: {class: TriggerList, ns: Dialogues.Core.Triggers, asm: com.facticus.dialogues}
       data:
         _triggers: []
 --- !u!114 &1908114766108715957
@@ -509,7 +509,7 @@ MonoBehaviour:
         _character: {fileID: 11400000, guid: d839843303232b74495044194251ecb7, type: 2}
         _dialogueText: Could you change the color back?
     - rid: 805541053820305571
-      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      type: {class: TriggerList, ns: Dialogues.Core.Triggers, asm: com.facticus.dialogues}
       data:
         _triggers: []
 --- !u!114 &2054570721333576528
@@ -550,6 +550,6 @@ MonoBehaviour:
         _character: {fileID: 11400000, guid: d839843303232b74495044194251ecb7, type: 2}
         _dialogueText: Hi, my name is Foo
     - rid: 805541053820305572
-      type: {class: TriggerList, ns: Dialogues.Triggers, asm: com.facticus.dialogues}
+      type: {class: TriggerList, ns: Dialogues.Core.Triggers, asm: com.facticus.dialogues}
       data:
         _triggers: []

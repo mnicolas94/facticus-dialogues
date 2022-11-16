@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Dialogues.Core
 {
+#if UNITY_EDITOR
     [CreateAssetMenu(fileName = "DialoguesDatabase", menuName = "Facticus/Dialogues/Database", order = 0)]
     public class DialoguesDatabase : ScriptableObject
     {
@@ -51,4 +52,5 @@ namespace Dialogues.Core
             TriggersDatabase.Clear();
         }
     }
+#endif
 }
