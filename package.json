@@ -6,7 +6,6 @@
   "unity": "2021.3",
   "unityRelease": "",
   "dependencies": {
-    "com.unity.graphtools.foundation": "0.11.2-preview"
   },
   "keywords": [],
   "author": {
