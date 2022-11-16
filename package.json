@@ -16,12 +16,5 @@
     "type": "git",
     "url": "https://github.com/mnicolas94/facticus-dialogues.git"
   },
-  "samples": [
-    {
-      "displayName": "Samples",
-      "description": "Dialogues system samples. You will need to import https://github.com/mnicolas94/unity-async-utils.git for the samples to work.",
-      "path": "Samples/Sample"
-    }
-  ],
   "license": "MIT"
 }
