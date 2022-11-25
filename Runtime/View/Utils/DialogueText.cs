@@ -29,12 +29,14 @@ namespace Dialogues.View.Utils
             await Task.Yield();  // wait one frame for TMPro to render text
             
             int characterCount = _textUi.textInfo.characterCount;
-            for (int i = 0; i < characterCount; i++)
+            int i = 0;
+            while (i < characterCount && !ct.IsCancellationRequested)
             {
-                int waitMillis = (int) (_letterAppearCooldown * 1000);
-                await Task.Delay(waitMillis, ct);
+                await AsyncUtils.Utils.Delay(_letterAppearCooldown, ct);
                 
                 SetCharacterAlpha(i, 255);
+
+                i++;
             }
         }
 

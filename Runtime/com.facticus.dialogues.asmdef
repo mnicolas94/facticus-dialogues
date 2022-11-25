@@ -2,6 +2,7 @@
     "name": "com.facticus.dialogues",
     "rootNamespace": "",
     "references": [
+        "GUID:48d718e2f73f47c48be09822f5881d60",
         "GUID:4aacf4ad2c5335449beb48d6d9ec2f78",
         "GUID:c35c6d9084ba1a541868fbd8c50a585a",
         "GUID:11a2306c728a4b843a652ec6c2f142bc",
