@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _displayName: 
   _predicate:
-    mode: 1
+    mode: 0
     unityReference: {fileID: 0}
     rawReference:
       rid: 805541053820305486
@@ -191,7 +191,7 @@ MonoBehaviour:
     - rid: -2
       type: {class: , ns: , asm: }
     - rid: 805541053820305486
-      type: {class: BinaryCheck, ns: Dialogues.Checks, asm: com.facticus.dialogues}
+      type: {class: BinaryCheck, ns: Dialogues.Cores.Checks, asm: com.facticus.dialogues}
       data:
         _operation: 0
         _checkA:

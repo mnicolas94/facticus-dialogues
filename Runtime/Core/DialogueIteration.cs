@@ -6,13 +6,16 @@ namespace Dialogues.Core
 {
     public static class DialogueIteration
     {
-        public static IEnumerable<DialogueLine> Iterate(this Dialogue dialogue)
+        public static IEnumerable<DialogueLine> Iterate(this Dialogue dialogue, bool executeTriggers = false)
         {
             var existsNextDialogue = TryGetRandomDialogueLine(dialogue.StartLines, out var nextLine);
             
             while (existsNextDialogue)
             {
-                nextLine.ExecuteTrigger();
+                if (executeTriggers)
+                {
+                    nextLine.ExecuteTrigger();
+                }
                 yield return nextLine;
                 var connections = dialogue.GetConnectedLines(nextLine);
                 existsNextDialogue = TryGetRandomDialogueLine(connections, out nextLine);

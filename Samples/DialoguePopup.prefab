@@ -68,6 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d463e42bf752416f87e3f175310367cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _handleTriggers: 0
+  _triggerAfterRendering: 1
   _renderers:
   - mode: 0
     unityReference: {fileID: 2525952333067214391}
